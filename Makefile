@@ -2,7 +2,7 @@ help: ## Show help
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 
 install:  ## Install dependencies
-	@echo Install dependencies
+	@echo Installing dependencies...
 	@docker run --rm -it --volume $(PWD)/app:/app composer install --quiet
 
 autoload:  ## Regenerate autoload (used after adding new classes)
