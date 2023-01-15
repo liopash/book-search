@@ -1,0 +1,5 @@
+// insert basic git ignore for php projects
+vendor
+composer.lock
+.idea
+.env

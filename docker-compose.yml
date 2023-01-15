@@ -1,0 +1,38 @@
+version: '3'
+services:
+    # Nginx for proxying requests to the correct application/component
+    web:
+        image: nginx:1.23.3
+        container_name: web
+        ports:
+            - "8000:80" # access via 127.0.0.1:8000
+        volumes:
+            - ./docker/nginx.conf:/etc/nginx/conf.d/default.conf
+            # - ./app:/app
+
+    # Component/Application BookSearch, fpm by default running on 9000 handled in web, no need to export port
+    app:
+        image: php:8.2.1-fpm
+        container_name: app
+        volumes:
+            - ./app:/app
+            - ./.env:/.env
+
+    #################################
+    # Mock servers for PoC purposes #
+    #################################
+    fiktivne-knihy.sk:
+        image: nginx:1.23.3
+        container_name: fiktivne-knihy
+        ports:
+            - "8001:80" # mocks live inside docker network exposing just for testing purposes
+        volumes:
+            - ./docker/nginx.fiktivne-knihy.conf:/etc/nginx/conf.d/default.conf
+
+    nonrealbookshop.com:
+        image: nginx:1.23.3
+        container_name: nonrealbookshop
+        ports:
+            - "8002:80" # mocks live inside docker network exposing just for testing purposes
+        volumes:
+            - ./docker/nginx.nonrealbookshop.conf:/etc/nginx/conf.d/default.conf
