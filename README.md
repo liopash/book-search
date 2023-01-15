@@ -80,7 +80,7 @@ Spustenie testov (bez docker prostredia):
 - `composer install`
 - `./vendor/phpunit/phpunit/phpunit  --testdox tests`
 
-Projekt obsahuje aj docker prostredie kde sú dve kníhkupectva mockovane a vracujú odpoveď len na request "harry potter" a "stoparuv pruvodce". Tak je možné po spustení prostredia zavolať request:
+Projekt obsahuje aj docker prostredie kde sú dve kníhkupectva mockovane a vracujú odpoveď len na request "harry potter" a "stoparuv pruvodce". Tak je možné po spustení prostredia zavolať request `http://127.0.0.1:8000/search?title=harry%20potter`:
 ```
 http://127.0.0.1:8000/search?title=harry%20potter
 {
@@ -124,7 +124,7 @@ V prostredí macOS alebo v inom linuxovom prostredi by mal pre spustenie projekt
 - `cp .env.EXAMPLE .env`
 - `make start`
 
-`Makefile` obsahuje niekoľko ďalších scriptov, ktoré som použil počas písania aplikácie
+`Makefile` obsahuje niekoľko ďalších scriptov, ktoré som použil počas písania aplikácie, po spusteni `make` sa zobrazi help.
 ```
 autoload                       Regenerate autoload (used after adding new classes)
 help                           Show help
